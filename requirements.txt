@@ -1,0 +1,11 @@
+openai
+langchain
+PyPDF2
+docx2txt
+fastapi
+uvicorn
+tiktoken
+python-dotenv
+faiss-cpu
+jinja2
+python-multipart
