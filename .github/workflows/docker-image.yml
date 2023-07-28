@@ -43,10 +43,10 @@ jobs:
     - name: Configure Pages
       uses: actions/configure-pages@v2
 
-    - name: Download artifact
+    - name: Download artifact 
       uses: actions/download-artifact@v2
       with:
-        name: web-build
+        name: docker-image
         path: .
 
 #     - name: Build with Jekyll
