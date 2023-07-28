@@ -28,7 +28,12 @@ jobs:
       run: |
         docker tag scott-avatar-ai:latest docker.io/scottlaiq/scott-avatar-ai:latest
         docker push docker.io/scottlaiq/scott-avatar-ai:latest
-
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: docker-image
+        path: .
+        
   deploy:
 
     needs: build
@@ -37,29 +42,10 @@ jobs:
 
     steps:
 
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Configure Pages
-      uses: actions/configure-pages@v2
-
-    - name: Download artifact 
-      uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v2
       with:
         name: docker-image
         path: .
-
-#     - name: Build with Jekyll
-#       uses: actions/jekyll-build-pages@v1
-#       with:
-#         source: ./
-#         destination: ./_site
-
-#     - name: Upload artifact 
-#       uses: actions/upload-artifact@v2
-#       with:
-#         name: web-build
-#         path: _site/
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v1
