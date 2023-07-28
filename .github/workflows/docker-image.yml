@@ -49,14 +49,17 @@ jobs:
         name: web-build
         path: .
 
-    - name: Build with Jekyll
-      uses: actions/jekyll-build-pages@v1
-      with:
-        source: ./
-        destination: ./_site
+#     - name: Build with Jekyll
+#       uses: actions/jekyll-build-pages@v1
+#       with:
+#         source: ./
+#         destination: ./_site
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
+#     - name: Upload artifact 
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: web-build
+#         path: _site/
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v1
