@@ -16,7 +16,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t scottlaiq/scott-avatar-ai:latest .
+        docker build -t scott-avatar-ai:latest .
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
