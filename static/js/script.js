@@ -115,8 +115,9 @@ function sendMessage() {
 
   // Replace the URL with your actual endpoint for processing user messages
   // fetch("http://localhost:8000/ask/", {
-  fetch("http://0.0.0.0:8000/ask/", {
-     // fetch("http://scottavatar.azurewebsites.net/ask/", {
+  // fetch("http://0.0.0.0:8000/ask/", {
+  fetch("https://scottavatar.azurewebsites.net/ask/", {
+  // fetch("https://scottll-symmetrical-space-trout-jq5x67rgr9qcq46w-5500.preview.app.github.dev/ask", {
       
       method: "POST",
       headers: {

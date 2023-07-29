@@ -12,7 +12,8 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-
+import re
+from PyPDF2 import PdfReader
 from typing import List, Dict, Union
 import uvicorn
 import os
@@ -81,6 +82,10 @@ async def ask_question(data: Dict[str, str]):
     return {"chat_history": chat_history}
 
 
+def sanitize_text(text: str) -> str:
+    return text.encode('utf-8', 'ignore').decode('utf-8')
+
+
 def get_pdf_text(files):
     text = ""
     for file in files:
@@ -88,12 +93,20 @@ def get_pdf_text(files):
             with open(file, "rb") as f:
                 pdf_reader = PdfReader(f)
                 for page in pdf_reader.pages:
-                    text += page.extract_text()
+                    page_text = page.extract_text()
+                    if page_text:  # Check if page_text is not None before sanitizing
+                        text += sanitize_text(page_text)
         else:  # If the file is an UploadFile instance
             pdf_reader = PdfReader(file.file)
             for page in pdf_reader.pages:
-                text += page.extract_text()
+                page_text = page.extract_text()
+                if page_text:  # Check if page_text is not None before sanitizing
+                    text += sanitize_text(page_text)
+
     return text
+
+
+
 
 
 def get_text_chunks(text):
