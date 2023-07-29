@@ -1,0 +1,19 @@
+{
+  "name": "scottbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScottLL/Scottbot.git"
+  },
+  "author": "scott lai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ScottLL/Scottbot/issues"
+  },
+  "homepage": "https://github.com/ScottLL/Scottbot#readme"
+}

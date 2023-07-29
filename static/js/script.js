@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
   profileImage.width = 30;
   profileImage.height = 30;
   profileImage.style.borderRadius = "50%";
-  profileImage.src = "/static/pic/Scott.jpg";
+  profileImage.src = "../static/pic/Scott.jpg";
 
   var nameElement = document.createElement("div");
   nameElement.className = "name";
@@ -115,8 +115,9 @@ function sendMessage() {
 
   // Replace the URL with your actual endpoint for processing user messages
   // fetch("http://localhost:8000/ask/", {
-    // fetch("http://0.0.0.0:8000/ask/", {
-      fetch("http://scottavatar.azurewebsites.net/ask/", {
+  fetch("http://0.0.0.0:8000/ask/", {
+     // fetch("http://scottavatar.azurewebsites.net/ask/", {
+      
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -140,7 +141,7 @@ function sendMessage() {
         profileImage.width = 30;
         profileImage.height = 30;
         profileImage.style.borderRadius = "50%";
-        profileImage.src = "./static/pic/Scott.jpg";
+        profileImage.src = "/static/pic/Scott.jpg";
   
         var nameElement = document.createElement("div");
         nameElement.className = "name";
@@ -190,4 +191,3 @@ function adjustTextAreaHeight() {
   textarea.style.height = "auto"; // Reset the height
   textarea.style.height = textarea.scrollHeight + "px"; // Set the height to fit the content
 }
-
