@@ -32,8 +32,8 @@ function elementDrag(e) {
   pos2 = pos4 - e.clientY;
   pos3 = e.clientX;
   pos4 = e.clientY;
-  chatContainer.style.top = (chatContainer.offsetTop - pos2) * 0.07320644216691069 + "vw";
-  chatContainer.style.left = (chatContainer.offsetLeft - pos1) * 0.07320644216691069 + "px";
+  chatContainer.style.top = chatContainer.offsetTop - pos2 + "px";
+  chatContainer.style.left = chatContainer.offsetLeft - pos1 + "px";
 }
 
 function closeDragElement() {
