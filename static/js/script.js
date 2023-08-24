@@ -115,9 +115,11 @@ function sendMessage() {
 
   // Replace the URL with your actual endpoint for processing user messages
   // fetch("http://localhost:8000/ask/", {
-  // fetch("http://0.0.0.0:8000/ask/", {
-  fetch("https://scottavatar.azurewebsites.net/ask/", {
+  fetch("http://0.0.0.0:8000/ask/", {
+  // fetch("http://127.0.0.1:5500/ask/", {
+  // fetch("https://scottavatar.azurewebsites.net/ask/", {
   // fetch("https://scottll-symmetrical-space-trout-jq5x67rgr9qcq46w-5500.preview.app.github.dev/ask", {
+  // fetch("http://scottaiavatar-env-final.eba-s4pjvikm.us-east-2.elasticbeanstalk.com/ask/", {
       
       method: "POST",
       headers: {
@@ -142,7 +144,7 @@ function sendMessage() {
         profileImage.width = 30;
         profileImage.height = 30;
         profileImage.style.borderRadius = "50%";
-        profileImage.src = "/static/pic/Scott.jpg";
+        profileImage.src = "../static/pic/Scott.jpg";
   
         var nameElement = document.createElement("div");
         nameElement.className = "name";
