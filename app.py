@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -7,13 +6,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chat_models import ChatOpenAI
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import re
-from PyPDF2 import PdfReader
 from typing import List, Dict, Union
 import uvicorn
 import os
@@ -36,10 +34,12 @@ conversation = None  # Initialize conversation as a global variable
 @app.on_event("startup")
 async def startup_event():
     load_dotenv()
-    OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")   # Replace with your actual OpenAI API key
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    if not OPENAI_API_KEY:
+        raise ValueError("No OpenAI API key found. Please set the OPENAI_API_KEY environment variable.")
 
     # Pre-upload the document
-    await upload_files(["ScottBot.pdf"])
+    await upload_files(["ScottBotV1.pdf"])
 
 @app.get("/")
 async def read_root(request: Request):
@@ -107,8 +107,6 @@ def get_pdf_text(files):
 
 
 
-
-
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
         separator="\n",
@@ -125,7 +123,7 @@ def get_vectorstore(text_chunks):
     return vectorstore
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(model='gpt-4o-mini')
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(

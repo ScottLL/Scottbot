@@ -1,11 +1,11 @@
-openai
-langchain
-PyPDF2
-docx2txt
 fastapi
 uvicorn
-tiktoken
 python-dotenv
+PyPDF2
+langchain
+langchain-community
+langchain-openai
+openai
 faiss-cpu
 jinja2
 python-multipart
