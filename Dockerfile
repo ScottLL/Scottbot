@@ -1,18 +1,28 @@
-# Use a base image
-FROM python:3.8
+# Build stage
+FROM python:3.8-slim AS builder
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements.txt file and install dependencies
+# Copy and install requirements
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
 
-# Expose a port if your application listens on a specific port
+# Runtime stage
+FROM python:3.8-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy from builder stage
+COPY --from=builder /app /app
+COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
+
+# Expose the port your application listens on
 EXPOSE 8000
 
 # Set the command to run your application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
