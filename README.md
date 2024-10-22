@@ -1,6 +1,3 @@
-# Scottbot
-
-
 # ScottBot
 
 ScottBot is an AI-powered chatbot that simulates conversations with Scott, providing information about Scott's background, skills, and experiences. It uses a combination of natural language processing and a knowledge base derived from Scott's information to answer user queries.
